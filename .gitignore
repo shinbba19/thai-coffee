@@ -1,5 +1,8 @@
 node_modules/
 .next/
 coffeeshop.db
+coffeeshop.db-shm
+coffeeshop.db-wal
 .env*.local
 npm-debug.log*
+.claude/
