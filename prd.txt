@@ -1,0 +1,283 @@
+# ☕ Product Requirement Document (PRD)
+## ETH-Based Online Coffee Shop (Next.js + SQLite)
+
+---
+
+## 1. 📌 Product Overview
+
+The ETH Coffee Shop is a web-based e-commerce platform that allows users to purchase coffee products and complete payments using Ethereum (ETH) via MetaMask.
+
+This project serves as a **Web3 commerce prototype**, combining traditional web architecture (Next.js + SQLite) with blockchain-based payments.
+
+---
+
+## 2. 🎯 Objectives
+
+- Enable users to purchase coffee using ETH
+- Demonstrate Web3 payment integration in a real-world use case
+- Build a lightweight full-stack prototype using Next.js and SQLite
+- Store transaction data and order history locally
+
+---
+
+## 3. 👥 Target Users
+
+### 3.1 Customer
+- Browse products
+- Add items to cart
+- Connect crypto wallet
+- Pay using ETH
+- View order confirmation
+
+### 3.2 Admin
+- View incoming orders
+- Track payment status
+- Update order fulfillment status
+
+---
+
+## 4. 🧱 System Architecture
+
+### Frontend
+- Next.js (React framework)
+- Tailwind CSS for UI
+
+### Backend
+- Next.js API Routes (Node.js runtime)
+- SQLite database using `better-sqlite3`
+
+### Blockchain Layer
+- Ethereum (Sepolia Testnet)
+- MetaMask wallet
+- ethers.js for transaction handling
+
+---
+
+## 5. 🧩 Core Features
+
+### 5.1 Wallet Connection
+- Connect MetaMask wallet
+- Display user wallet address
+- Detect network (testnet/mainnet)
+
+---
+
+### 5.2 Product Catalog
+Users can view a list of available coffee products.
+
+Each product includes:
+- Name
+- Description
+- Image
+- Price in ETH
+
+---
+
+### 5.3 Shopping Cart
+- Add/remove products
+- Adjust quantity
+- Calculate total price (ETH)
+
+---
+
+### 5.4 ETH Payment
+
+Users complete payment via MetaMask.
+
+Flow:
+1. User clicks "Pay with ETH"
+2. MetaMask prompts transaction
+3. ETH is sent to merchant wallet
+4. Transaction hash is returned
+
+---
+
+### 5.5 Order Management
+
+After payment:
+- Order is stored in SQLite database
+- Includes:
+  - Wallet address
+  - Items purchased
+  - Total ETH
+  - Transaction hash
+  - Status
+
+---
+
+### 5.6 Admin Dashboard
+Admin can:
+- View all orders
+- Check payment details
+- Update order status (pending / paid / shipped)
+
+---
+
+## 6. 🔄 User Flow
+
+### Customer Journey
+
+Home Page  
+→ Browse Products  
+→ Add to Cart  
+→ Go to Checkout  
+→ Connect Wallet  
+→ Pay with ETH  
+→ View Success Page  
+
+---
+
+### Admin Journey
+
+Admin Page  
+→ View Orders  
+→ Verify Payment  
+→ Update Order Status  
+
+---
+
+## 7. 🗄️ Database Design (SQLite)
+
+### Table: products
+- id (INTEGER, PK)
+- name (TEXT)
+- price_eth (REAL)
+- image_url (TEXT)
+- description (TEXT)
+
+---
+
+### Table: orders
+- id (INTEGER, PK)
+- wallet_address (TEXT)
+- total_eth (REAL)
+- tx_hash (TEXT)
+- status (TEXT)
+- created_at (TEXT)
+
+---
+
+### Table: order_items
+- id (INTEGER, PK)
+- order_id (INTEGER)
+- product_id (INTEGER)
+- quantity (INTEGER)
+
+---
+
+## 8. 🔌 API Endpoints
+
+### POST /api/orders/create
+Create new order after payment
+
+### GET /api/orders/list
+Retrieve all orders
+
+### POST /api/orders/update
+Update order status
+
+---
+
+## 9. 🧠 Business Logic
+
+### Payment Handling
+- ETH is sent directly to merchant wallet
+- System records transaction hash
+- No smart contract in MVP
+
+---
+
+### Order Validation (Optional)
+- Verify transaction via blockchain RPC
+- Ensure:
+  - Correct recipient
+  - Correct amount
+
+---
+
+## 10. 🎨 UI Pages
+
+| Page | Description |
+|------|------------|
+| `/` | Product listing |
+| `/cart` | Shopping cart |
+| `/checkout` | Payment page |
+| `/success` | Payment confirmation |
+| `/admin` | Order management |
+
+---
+
+## 11. ⚠️ Constraints & Risks
+
+- ETH price volatility
+- Gas fees may affect UX
+- Requires MetaMask installation
+- No refund mechanism (MVP)
+- No authentication system (admin is open or simple)
+
+---
+
+## 12. 🚀 MVP Scope
+
+Include:
+- Product listing
+- Cart system
+- Wallet connection
+- ETH payment
+- Store orders in SQLite
+- Basic admin page
+
+Exclude:
+- Smart contracts
+- User accounts
+- Payment verification automation
+- Delivery tracking
+
+---
+
+## 13. 📈 Future Enhancements
+
+- Smart contract escrow system
+- Stablecoin payments (USDT / USDC)
+- NFT-based loyalty program
+- User authentication system
+- Real-time order tracking
+- Integration with delivery services
+
+---
+
+## 14. 🧪 Success Criteria
+
+- User can successfully:
+  - Connect wallet
+  - Send ETH
+  - Create order
+- Order is stored correctly in database
+- Admin can view and update order
+
+---
+
+## 15. 🧑‍💻 Developer Instructions
+
+Build a Next.js application that:
+- Displays coffee products
+- Allows cart functionality
+- Integrates MetaMask wallet
+- Sends ETH using ethers.js
+- Stores order data in SQLite
+- Provides admin interface for order management
+
+UI should be clean and minimal using Tailwind CSS.
+
+---
+
+## 16. 📌 Notes
+
+This system is designed as a **prototype** and prioritizes:
+- Simplicity
+- Speed of development
+- Demonstration of Web3 integration
+
+---
+
+END OF DOCUMENT

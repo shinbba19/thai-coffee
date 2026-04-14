@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir /d/Apps/Coffeeshop/)",
+      "Bash(npx create-next-app@latest . --js --app --tailwind --eslint --no-src-dir --import-alias \"@/*\" --no-turbopack --name \"coffeeshop\")",
+      "Bash(npm run:*)",
+      "Bash(curl -s http://localhost:3000/api/products)",
+      "Bash(curl -s http://localhost:3001/api/products)",
+      "Bash(taskkill /PID 22292 /F)",
+      "Bash(taskkill /PID 21744 /F)",
+      "Bash(cmd //c \"taskkill /PID 22292 /F & taskkill /PID 21744 /F\")",
+      "Bash(curl -s --retry 5 --retry-delay 1 --retry-connrefused http://localhost:3000/api/products)"
+    ]
+  }
+}
