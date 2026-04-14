@@ -280,4 +280,34 @@ This system is designed as a **prototype** and prioritizes:
 
 ---
 
+## 17. 🚀 Deployment
+
+### Platform: Render (Free Tier)
+- URL: https://thai-coffee.onrender.com
+- Hosting: Render Web Service (Docker)
+- Free tier — spins down after 50 seconds of inactivity, wakes on next request
+
+### Stack on Production
+- Runtime: Node.js 20 (Docker container)
+- Database: SQLite (ephemeral — reseeds on each deploy)
+- Build: Docker image via `Dockerfile`
+
+### GitHub Repository
+- https://github.com/shinbba19/thai-coffee
+- Branch: `main`
+
+### Dockerfile
+- Base image: `node:20-slim`
+- Build tools installed: `python3`, `make`, `g++` (required for `better-sqlite3`)
+- Build command: `npm ci && npm run build`
+- Start command: `npm start -- -p ${PORT}`
+
+### Redeploy Steps
+1. Make changes locally
+2. `git add . && git commit -m "message"`
+3. `git push origin master && git push origin master:main`
+4. Render auto-deploys on push to `main`
+
+---
+
 END OF DOCUMENT
